@@ -30,9 +30,9 @@ export class FormComponent implements OnInit {
   }
 
   public create(): void{
-    this.clienteServie.create(this.cliente).subscribe(cliente =>{
+    this.clienteServie.create(this.cliente).subscribe(json =>{
       this.router.navigate(['./clientes'])
-      swal.fire('Nuevo Cliente', `Cliente ${this.cliente.nombre} creado con éxito!`, 'success')
+      swal.fire('Nuevo Cliente', `${json.mensaje}: ${json.cliente.nombre}`, 'success')
     }
   );
   }
@@ -44,12 +44,4 @@ export class FormComponent implements OnInit {
     }
   );
   }
-
-  /*public delete(): void{
-    this.clienteServie.delete(this.cliente.id).subscribe(cliente =>{
-      this.router.navigate(['./clientes'])
-      swal.fire('Cliente Atualizado', `Cliente ${this.cliente.nombre} actualizado con éxito!`, 'warning')
-    }
-  );
-}*/
 }
