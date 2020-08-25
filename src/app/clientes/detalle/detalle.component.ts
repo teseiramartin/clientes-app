@@ -3,7 +3,7 @@ import { Cliente } from '../cliente';
 import { ClienteService } from '../cliente.service';
 import { ModalService } from './modal.service';
 import swal from 'sweetalert2';
-//import { HttpEventType } from '@angular/common/http';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'detalle-cliente',
@@ -16,7 +16,7 @@ export class DetalleComponent implements OnInit {
 
   titulo: string = "Detalle del cliente";
   fotoSeleccionada: File;
-  //progreso: number = 0;
+  progreso: number = 0;
 
   constructor(public clienteService: ClienteService,
     public modalService: ModalService) { }
@@ -25,7 +25,7 @@ export class DetalleComponent implements OnInit {
 
   seleccionarFoto(event: any){
     this.fotoSeleccionada = event.target.files[0];
-    //this.progreso = 0;
+    this.progreso = 0;
     console.log(this.fotoSeleccionada);
     if(this.fotoSeleccionada.type.indexOf('image') < 0) {
       swal.fire("Error: Seleccionar imagen", 'El archivo debe ser del tipo imagen','error');
@@ -53,11 +53,11 @@ export class DetalleComponent implements OnInit {
     //this.progreso = 0;
   }
 
-  /*
-  subirFoto() {
+
+  /*subirFoto() {
 
   if (!this.fotoSeleccionada) {
-    swal('Error Upload: ', 'Debe seleccionar una foto', 'error');
+    swal.fire('Error Upload: ', 'Debe seleccionar una foto', 'error');
   } else {
     this.clienteService.subirFoto(this.fotoSeleccionada, this.cliente.id)
       .subscribe(event => {
@@ -68,12 +68,12 @@ export class DetalleComponent implements OnInit {
           this.cliente = response.cliente as Cliente;
 
           this.modalService.notificarUpload.emit(this.cliente);
-          swal('La foto se ha subido completamente!', response.mensaje, 'success');
+          swal.fire('La foto se ha subido completamente!', response.mensaje, 'success');
         }
       });
     }
-  }
+  }*/
 
-  */
+
 
 }
