@@ -8,7 +8,7 @@
       <div class="form-group row">
         <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre" required minlength="4" #nombre="ngModel">
+          <input id="nombre" type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre" required minlength="4" #nombre="ngModel">
           <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
             <div *ngIf="nombre.errors.required">
               Nombre es requerido
@@ -59,8 +59,12 @@
       <div class="form-group row">
         <label for="region" class="col-form-label col-sm-2">Region</label>
         <div class="col-sm-6">
-          <select name="region" [compareWith]="compararRegion" class="form-control" [(ngModel)]="cliente.region" style="width:300px;">
-            <option [ngValue]="undefined">--- Seleccione Region ---</option>
+          <select name="region" *ngIf="!clienteVacio()" [compareWith]="compararRegion" class="form-control" [(ngModel)]="cliente.region" style="width:300px;">
+            <option *ngFor="let region of regiones" [ngValue]="region">{{region.nombre}}</option>
+          </select>
+
+          <select name="region" *ngIf="clienteVacio()" class="form-control" [(ngModel)]="cliente.region" style="width:300px;">
+            <option [ngValue]="undefined" disabled selected>---Selecciona una region---</option>
             <option *ngFor="let region of regiones" [ngValue]="region">{{region.nombre}}</option>
           </select>
           <!--<div class="alert alert-danger" *ngIf="region.invalid && (region.dirty || region.touched)">
