@@ -60,12 +60,12 @@ export class ClientesComponent implements OnInit {
   delete(cliente: Cliente): void {
       Swal.fire({
         title: 'Estas seguro?',
-        text: `Guarda que se borra ${cliente.nombre}`,
+        text: `Seguro que quiere borrar el cliente ${cliente.nombre}`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, borralo ya fue!'
+        confirmButtonText: 'Si, Seguro!'
       }).then((result) => {
         if (result.value) {
           this.clienteService.delete(cliente.id).subscribe(
